@@ -21,3 +21,18 @@ async function initializeCache() {
 async function saveToFile() {
     await writeFile(DATA_PATH, JSON.stringify(expensesCache, null, 2))
 }
+
+export async function addExpense(description, amount) {
+    await initializeCache()
+
+    const expense = {
+        id: Date.now().toString(),
+        date: new Date().toISOString().split('T')[0],
+        description,
+        amount: parseFloat(amount)
+    }
+
+    expensesCache.push(expense)
+    await saveToFile()
+    return expense
+}
