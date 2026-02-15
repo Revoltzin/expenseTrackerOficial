@@ -44,4 +44,9 @@ export async function addExpense(description, amount) {
     await saveToFile()
     return expense
 }
+
+export async function getAllExpenses() {
+    await initializeCache()
+    return expensesCache
+}
  
