@@ -12,3 +12,12 @@ export async function create(req, res) {
         res.status(500).json({ error: 'Intern Error'})
     }
 }
+
+export async function list(req, res) {
+    try {
+        const expenses = await expensesService.getAllExpenses()
+        res.json(expenses)
+    } catch (error) {
+        res.status(500).json({ error: "Error to list"})
+    }
+}
